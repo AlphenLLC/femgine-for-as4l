@@ -1,0 +1,8 @@
+{
+  "joinMessages": [
+    "{user} just slid into the AlphStreet territory!"
+  ],
+  "leaveMessages": [
+    "Busta {user} just left the hood. Fool."
+  ]
+}
