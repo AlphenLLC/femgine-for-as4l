@@ -1,6 +1,6 @@
 {
-  "name": "shin-bot",
-  "version": "2.0.1",
+  "name": "femgine-for-as4l",
+  "version": "1.0",
   "description": "",
   "main": "index.js",
   "engines": {
@@ -11,7 +11,7 @@
     "start": "nodemon"
   },
   "keywords": [],
-  "author": "MaxTechnics",
+  "author": "Alphen Limited",
   "license": "Creative Commons Attribution-NonCommercial 4.0 International",
   "dependencies": {
     "ascii-table": "^0.0.9",

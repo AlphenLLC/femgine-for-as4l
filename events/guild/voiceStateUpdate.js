@@ -3,7 +3,7 @@ const { White } = require('../../assets/global/colors.json');
 
 module.exports = async (client, oldState, newState) => {
 	if (!oldState.channelId && newState.channel.id === client.config.kingVcID) {
-		return client.channels.cache.get(client.config.kingVcChannelID).send(`Welcome to the shin crack shack, ${newState.member.displayName}.`);
+		return client.channels.cache.get(client.config.kingVcChannelID).send(`Welcome to the femgine-for-as4l crack shack, ${newState.member.displayName}.`);
 	}
 
 	/* LOGS (testing purposes only) (put where they should be) */
