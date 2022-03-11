@@ -8,7 +8,7 @@ const { Permissions } = require('discord.js');
  * @returns {Boolean} Returns true if message.author can ban members
  */
 const checkStaff = (client, message, returnMessage) => {
-	if (!message.member.roles.cache.get(client.config.theHolyTrinityRoleID) || // Check by role
+	if (!message.member.roles.cache.get(client.config.adminRole) || // Check by role
 		!message.member.id == message.guild.ownerId || // Check if it's the owner
 		!message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
 		!message.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS) ||

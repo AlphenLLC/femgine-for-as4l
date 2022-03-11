@@ -15,7 +15,7 @@ module.exports = {
 	isHidden: false,
 	aliases: ['set', 'config'],
 	cooldown: 5,
-	execute: async function(client, message, args) {
+	execute: async function (client, message, args) {
 		if (!checkStaff(client, message)) return;
 
 		const readData = readJSONSync('./deployData/settings.json', 'utf-8');

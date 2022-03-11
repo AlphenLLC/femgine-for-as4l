@@ -1,25 +1,33 @@
 const fs = require('fs-extra');
+Array.prototype.randomElement = function () { return this[Math.floor(Math.random() * this.length)] }; // when the status message is sus!
 
-/**
- * Set the bot's status
- * @param {Client} client Discord client
- * @param {String} selectedStatus Status that has to be set
- */
 const setSts = (client, selectedStatus) => {
-	switch (selectedStatus) { // lmao, i fucking hate this.
+	switch (selectedStatus) {
+		case 'online':
+			return setRPC(client, 'online', 'homies get ready for the next drive-by', 'WATCHING');
+		case 'idle':
+			return setRPC(client, 'idle', 'Ice Cube', 'LISTENING');
+		case 'dnd':
+			return setRPC(client, 'dnd', 'with an AK-47', 'PLAYING');
+		case 'stream':
+			client.user.setPresence({
+				status: 'online',
+				activities: [{
+					name: 'Speedrunning Grand Theft Auto IV!',
+					type: 'STREAMING',
+					url: 'https://www.youtube.com/watch?v=-9OuCWWL5aE&t=98s',
+				}]
+			});
+		case 'next':
+			const nextState = states.randomElement();
+			return setSts(client, nextState);
 		default:
-			return setRPC(client, 'online', 'Grand Theft Auto San Andreas', 'PLAYING');
-		// return false;
+			const gtaIv = [{ activity: 'Burak Oyunda GTA IV Series', thing: 'WATCHING' }, { activity: 'Grand Theft Auto IV', thing: 'PLAYING' }, { activity: 'The Music of Grand Theft Auto IV', thing: 'LISTENING' }].randomElement();
+			return setRPC(client, 'online', gtaIv.activity, gtaIv.thing);
+			return false;
 	}
 };
 
-/**
- * Actually does the DJS API call to set the client status
- * @param {Client} client Discord client
- * @param {String} activityStatus Presence status (idle, dnd, online, invisible)
- * @param {String} activityName Custom status, what goes behind the 'playing, watching,...'
- * @param {String} activityType Type of activity (playing, watching, streaming,...)
- */
 const setRPC = async (client, activityStatus, activityName, activityType) => {
 	client.user.setPresence({
 		status: activityStatus,
@@ -31,13 +39,8 @@ const setRPC = async (client, activityStatus, activityName, activityType) => {
 	return true;
 };
 
-const states = ['online', 'wall-e']; // We don't want to have the bot appear offline
-/**
- * Pick a random status and set it
- * @param {Client} client Discord client
- */
+const states = ['online', 'idle', 'dnd', 'stream'];
 const randomStatus = async (client) => {
-	// Fetch the settings JSON file and pull it's randomStatus string
 	const settingsFile = await fs.readJsonSync('./deployData/settings.json', 'utf-8');
 	if (settingsFile.randomStatus.state) setSts(client, states[Math.floor(Math.random() * states.length)]);
 };
