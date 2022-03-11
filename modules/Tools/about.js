@@ -1,5 +1,5 @@
 const { softGreen } = require('../../assets/global/colors.json');
-const { maxID } = require('../../assets/global/memberIDs.json');
+const { alphID } = require('../../assets/global/memberIDs.json');
 const { version } = require('../../package.json');
 const { MessageEmbed } = require('discord.js');
 
@@ -8,11 +8,11 @@ module.exports = {
 	helpTitle: 'About',
 	category: 'Tools',
 	usage: 'about',
-	description: 'Display the bot\'s information',
+	description: 'Who is the real OG? I\'m the real OG!',
 	isHidden: false,
 	aliases: ['bot', 'botinfo', 'info'],
 	cooldown: 20,
-	execute: async function(client, message, args) {
+	execute: async function (client, message, args) {
 		const { heapUsed, heapTotal } = process.memoryUsage();
 
 		// Uptime calculations
@@ -27,14 +27,14 @@ module.exports = {
 
 		const aboutEmbed = new MessageEmbed()
 			.setColor(softGreen)
-			.setAuthor('About Shin Bot', client.user.displayAvatarURL({ format: 'png', size: 4096, dynamic: true }))
+			.setAuthor('About Femgine for AS4L!', client.user.displayAvatarURL({ format: 'png', size: 4096, dynamic: true }))
 			.addFields(
 				{ name: 'Bot version:', value: version, inline: true },
 				{ name: 'Uptime:', value: `${days}d ${hours}h ${minutes}m ${seconds}s`, inline: true },
 				{ name: 'Memory Usage:', value: `${(heapUsed / 1024 / 1024).toFixed(1)} MB / ${(heapTotal / 1024 / 1024).toFixed(1)}MB (${(heapUsed / heapTotal * 100).toFixed(2)}%)` },
-				{ name: 'Dev:', value: `<@${maxID}>` }
+				{ name: 'Owner:', value: `<@${alphID}>` }
 			)
-			.setFooter('Made with ☕, that\'s right mel, it\'s coffee!');
+			.setFooter('AS4L! Made with ❤️');
 
 		message.channel.send({ embeds: [aboutEmbed] });
 	},
